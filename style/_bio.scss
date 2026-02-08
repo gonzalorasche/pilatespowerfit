@@ -1,0 +1,189 @@
+@use 'variables' as vars;
+
+/* =====================================================
+   CREATOR SECTION
+===================================================== */
+
+.creator-section {
+  min-height: calc(100vh - 65px); // altura total menos nav
+  width: 100%;
+  background-color: vars.$bg-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 40px;    // aire arriba
+  padding-bottom: 40px; // aire abajo
+}
+
+/* =====================================================
+   CONTENT WRAPPER
+===================================================== */
+
+.creator-container {
+  max-width: 1400px;       // igual que .classes-container
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: 2rem;
+  display: flex;
+  gap: 3rem;
+  align-items: stretch;   // altura igual
+  justify-content: center;
+}
+
+/* =====================================================
+   IMAGE CARD
+===================================================== */
+
+.creator-image-card {
+  flex: 1;
+  max-width: 640px;         // igual que .classes-card
+  height: 75vh;              // limita la altura
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(vars.$power-red, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(vars.$power-red, 0.15),
+    0 24px 70px rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.creator-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* =====================================================
+   TEXT CARD
+===================================================== */
+
+.creator-text-card {
+  flex: 1;
+  max-width: 640px;         // igual que .classes-card
+  height: 75vh;              // coincide con la imagen
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 18px;
+  padding: 3rem 3.2rem;
+  border: 1px solid rgba(vars.$power-red, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(vars.$power-red, 0.15),
+    0 24px 70px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* =====================================================
+   TITLES
+===================================================== */
+
+.creator-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: vars.$text-primary;
+  margin-bottom: 0.6rem;
+}
+
+.creator-role {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: vars.$power-red;
+  margin-bottom: 1.6rem;
+}
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+.creator-text p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+}
+
+/* DESTACADO */
+.creator-highlight {
+  margin-top: 1.8rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(vars.$power-red, 0.4);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: vars.$power-red;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1024px) {
+  .creator-container {
+    flex-direction: column; // apila
+    align-items: center;
+    gap: 2rem;
+    padding-inline: vars.$mobile-padding; // coincide con sección clases
+  }
+
+.creator-image-card,
+  .creator-text-card {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .creator-section {
+    min-height: auto;
+    padding-top: 50px;   // aire superior
+    padding-bottom: 50px; // aire inferior
+  }
+
+  /* mostrar texto primero */
+  .creator-container {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1.5rem;
+    padding-inline: vars.$mobile-padding;
+  }
+
+.creator-image-card {
+  width: 100%;
+  height: 40vh;          // 👈 achica SOLO la imagen
+  max-height: 280px;
+  flex-shrink: 0;        // 👈 CLAVE: evita que el texto la aplaste
+}
+
+  .creator-text-card {
+    width: 100%;
+    padding: 2.2rem 2rem;
+    border-radius: 16px;
+  }
+
+  .creator-title {
+    font-size: 2rem;
+  }
+
+  .creator-text p {
+    font-size: 0.9rem;
+  }
+
+  .creator-highlight {
+    font-size: 0.85rem;
+  }
+}

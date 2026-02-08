@@ -1,0 +1,221 @@
+@use 'variables' as vars;
+
+/* =====================================================
+   SERVICES SECTION
+===================================================== */
+
+.services-section {
+  min-height: calc(100vh - 65px); // respeta nav
+  width: 100%;
+  background-color: vars.$bg-primary;
+
+  display: flex;
+  align-items: center;
+}
+
+/* =====================================================
+   CONTENT WRAPPER
+===================================================== */
+
+.services-wrapper {
+  width: 100%;
+  max-width: 1400px; // mismo ancho que el resto
+  margin: 0 auto;
+  padding-inline: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.services-header {
+  max-width: 620px;
+}
+
+.services-intro {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: vars.$text-primary;
+  opacity: 0.85;
+}
+
+
+/* =====================================================
+   SECTION TITLE (GLOBAL)
+===================================================== */
+
+.section-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: vars.$text-primary;
+  margin-bottom: 0.6rem;
+  position: relative;
+}
+
+/* acento inferior */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 1rem;
+  background-color: vars.$deep-violet;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .section-title::after {
+    width: 44px;
+    height: 3px;
+  }
+}
+
+
+
+/* =====================================================
+   CARDS GRID
+===================================================== */
+
+.services-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+/* =====================================================
+   SERVICE CARD
+===================================================== */
+
+.service-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 20px;
+  padding: 2.8rem 2.6rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  border: 1px solid rgba(vars.$deep-violet, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(vars.$deep-violet, 0.15),
+    0 22px 60px rgba(0, 0, 0, 0.6);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* acento superior */
+.service-card::before {
+  background: linear-gradient(
+    90deg,
+    vars.$deep-violet,
+    rgba(vars.$deep-violet, 0.4),
+    transparent
+  );
+}
+
+/* hover */
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(vars.$deep-violet, 0.35);
+}
+
+/* =====================================================
+   CARD CONTENT
+===================================================== */
+
+.service-card h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: vars.$text-primary;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: vars.$text-primary;
+  opacity: 0.85;
+}
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.service-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.service-card li {
+  font-size: 0.9rem;
+  color: vars.$text-primary;
+  opacity: 0.9;
+  padding-left: 18px;
+  position: relative;
+}
+
+.service-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: vars.$deep-violet;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1024px) {
+  .services-cards {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-section {
+    min-height: auto;
+    padding: 60px 0;
+  }
+
+  .services-wrapper {
+    padding-inline: vars.$mobile-padding; // 👈 CLAVE
+    gap: 2.2rem;
+  }
+
+  .service-card {
+    padding: 2.2rem 2rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .services-intro {
+    font-size: 0.95rem;
+  }
+}

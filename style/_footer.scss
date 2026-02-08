@@ -1,0 +1,130 @@
+@use 'variables' as vars;
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.site-footer {
+  background-color: #0f0f14;
+  color: vars.$text-primary;
+  width: 100%;
+}
+
+/* CONTENT WRAPPER REAL */
+.footer-container {
+  max-width: 1400px;
+  margin-inline: auto;
+
+  /* 👇 padding SOLO acá */
+  padding-block: 4rem;
+  padding-inline: 2rem;
+}
+
+/* TODO VA A LA IZQUIERDA */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+}
+
+/* =====================================================
+   LOGO PRINCIPAL
+===================================================== */
+
+.footer-logo {
+  width: 140px; /* 👈 AJUSTÁ ACÁ tamaño logo Power Fit */
+  height: auto;
+}
+
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-nav a {
+  font-size: 0.95rem;
+  color: vars.$text-primary;
+  opacity: 0.75;
+  transition: opacity 0.25s ease;
+}
+
+.footer-nav a:hover {
+  opacity: 1;
+}
+
+/* =====================================================
+   REDES
+===================================================== */
+
+.footer-social {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.footer-social img {
+  height: 22px; /* 👈 AJUSTÁ ACÁ tamaño iconos redes */
+  width: auto;
+  opacity: 0.8;
+  transition: opacity 0.25s ease;
+}
+
+.footer-social img:hover {
+  opacity: 1;
+}
+
+/* =====================================================
+   LEGALES
+===================================================== */
+
+.footer-legal {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  max-width: 420px;
+}
+
+/* =====================================================
+   AUTOR
+===================================================== */
+
+.footer-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.footer-author span {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  opacity: 0.45;
+}
+
+.footer-agency-logo {
+  width: 90px; /* 👈 AJUSTÁ ACÁ tamaño logo Brickell Lab */
+  height: auto;
+  object-fit: contain;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+  .footer-container {
+    padding: vars.$mobile-padding;
+  }
+
+  .footer-logo {
+    width: 120px;
+  }
+
+  .footer-agency-logo {
+    width: 80px;
+  }
+}

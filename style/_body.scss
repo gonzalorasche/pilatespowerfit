@@ -1,0 +1,23 @@
+@use 'variables' as vars;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: vars.$bg-primary;
+    color: vars.$text-primary;
+    line-height: 1.6;
+}
+
+// Espacio para que la nav fija no tape el contenido
+main {
+    padding-top: 80px;
+
+    @media (max-width: 768px) {
+        padding-top: 65px;
+    }
+}

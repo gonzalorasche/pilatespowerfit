@@ -1,0 +1,161 @@
+@use 'variables' as vars;
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    background-image: url('../static/img/hero1.png');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+
+/* Overlay para legibilidad */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(vars.$bg-primary, 0.85) 0%,
+        rgba(vars.$bg-primary, 0.6) 40%,
+        rgba(vars.$bg-primary, 0.3) 65%,
+        rgba(vars.$bg-primary, 0) 100%
+    );
+
+    z-index: 1;
+}
+
+/* =========================
+   HERO CONTAINER (WRAP)
+========================= */
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+    padding-inline: 2rem;
+
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 1024px) {
+        padding-inline: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        height: 100vh;
+        padding-inline: vars.$mobile-padding; // ✅ UNIFICADO
+        align-items: flex-start;
+        padding-top: 180px; // aire bajo la nav
+    }
+}
+
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content {
+    max-width: 620px;
+    color: vars.$text-primary;
+
+    @media (max-width: 1024px) {
+        max-width: 540px;
+    }
+
+    @media (max-width: 768px) {
+        max-width: 100%;
+    }
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+.hero-title {
+    font-size: clamp(2.3rem, 4.4vw, 3.5rem);
+    font-weight: 400; // Anton ya es pesada, 900 no aplica
+    line-height: 1.05;
+    margin-bottom: 1.4rem;
+    position: relative;
+
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 0.04em; // 👈 CLAVE: aire sin perder impacto
+
+    text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Línea inferior – acento deportivo */
+.hero-title::after {
+    content: '';
+    display: block;
+
+    width: 64px;
+    height: 4px;
+    margin-top: 1rem;
+
+    background-color: vars.$deep-violet;
+    border-radius: 4px;
+    opacity: 0.9;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 520px;
+}
+
+/* Highlight de marca dentro de la bajada */
+.hero-highlight {
+    font-weight: 1000;
+    letter-spacing: 0.01em;
+}
+
+/* =========================
+   MOBILE REFRAME
+========================= */
+
+@media (max-width: 768px) {
+    .hero {
+        /* desplazamiento fuerte para mostrar mejor a la persona */
+        background-position: 80% center;
+    }
+
+    .hero::before {
+        background: linear-gradient(
+            180deg,
+            rgba(vars.$bg-primary, 0.88) 0%,
+            rgba(vars.$bg-primary, 0.65) 45%,
+            rgba(vars.$bg-primary, 0.35) 70%,
+            rgba(vars.$bg-primary, 0) 100%
+        );
+    }
+
+    .hero-title::after {
+        width: 48px;
+        height: 3px;
+    }
+
+    /* 👇 CONTROL DE AIRE LATERAL EN MOBILE */
+    .hero-subtitle {
+        max-width: 90%; // 👈 AJUSTÁ ACÁ: 85% / 90% / 92%
+    }
+}
