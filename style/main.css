@@ -252,7 +252,7 @@ main {
   }
 }
 /* =====================================================
-   CREATOR SECTION
+    CREATOR SECTION
 ===================================================== */
 .creator-section {
   min-height: calc(100vh - 65px);
@@ -268,7 +268,7 @@ main {
 }
 
 /* =====================================================
-   CONTENT WRAPPER
+    CONTENT WRAPPER
 ===================================================== */
 .creator-container {
   max-width: 1400px;
@@ -282,7 +282,7 @@ main {
 }
 
 /* =====================================================
-   IMAGE CARD
+    IMAGE CARD
 ===================================================== */
 .creator-image-card {
   flex: 1;
@@ -307,7 +307,7 @@ main {
 }
 
 /* =====================================================
-   TEXT CARD
+    TEXT CARD
 ===================================================== */
 .creator-text-card {
   flex: 1;
@@ -326,7 +326,7 @@ main {
 }
 
 /* =====================================================
-   TITLES
+    TITLES
 ===================================================== */
 .creator-title {
   font-family: "Anton", sans-serif;
@@ -349,7 +349,7 @@ main {
 }
 
 /* =====================================================
-   TEXT
+    TEXT
 ===================================================== */
 .creator-text p {
   font-family: "Roboto", sans-serif;
@@ -372,7 +372,7 @@ main {
 }
 
 /* =====================================================
-   RESPONSIVE
+    RESPONSIVE
 ===================================================== */
 @media (max-width: 1024px) {
   .creator-container {
@@ -383,7 +383,7 @@ main {
   }
   .creator-image-card,
   .creator-text-card {
-    max-width: 100%;
+    max-width: 680px;
     height: auto;
   }
 }
@@ -421,6 +421,37 @@ main {
     font-size: 0.85rem;
   }
 }
+/* =====================================================
+    FIX LANDSCAPE (RESPONSIVE HORIZONTAL)
+===================================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .creator-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 0 40px;
+    display: block;
+  }
+  .creator-container {
+    display: block;
+    padding-inline: 2rem;
+  }
+  .creator-image-card,
+  .creator-text-card {
+    margin: 0 auto 1.5rem;
+    max-width: 90%;
+    width: 100%;
+    height: auto;
+  }
+  .creator-image-card {
+    height: 300px;
+  }
+  .creator-text-card {
+    padding: 1.5rem;
+  }
+  .creator-title {
+    font-size: 1.8rem;
+  }
+}
 /* =========================
    SECTION SEPARATOR – LIQUID GLOW
 ========================= */
@@ -450,11 +481,14 @@ main {
    SERVICES SECTION
 ===================================================== */
 .services-section {
+  position: relative;
   min-height: calc(100vh - 65px);
   width: 100%;
   background-color: #0B0B0D;
   display: flex;
   align-items: center;
+  padding: 40px 0;
+  box-sizing: border-box;
 }
 
 /* =====================================================
@@ -467,26 +501,31 @@ main {
   padding-inline: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 3.5rem;
+  box-sizing: border-box;
 }
 
 /* =====================================================
-   HEADER
+   HEADER (ALINEADO CON EL CONTENIDO)
 ===================================================== */
 .services-header {
-  max-width: 620px;
+  width: 100%;
+  max-width: 1305px;
+  margin: 0 auto;
 }
 
 .services-intro {
   margin-top: 1rem;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: #F2F2F2;
   opacity: 0.85;
+  max-width: 620px;
 }
 
 /* =====================================================
-   SECTION TITLE (GLOBAL)
+   SECTION TITLE
 ===================================================== */
 .section-title {
   font-family: "Anton", sans-serif;
@@ -499,7 +538,6 @@ main {
   position: relative;
 }
 
-/* acento inferior */
 .section-title::after {
   content: "";
   display: block;
@@ -508,22 +546,18 @@ main {
   margin-top: 1rem;
   background-color: #7C3AED;
   border-radius: 4px;
-  opacity: 0.9;
 }
 
-@media (max-width: 768px) {
-  .section-title::after {
-    width: 44px;
-    height: 3px;
-  }
-}
 /* =====================================================
-   CARDS GRID
+   CARDS GRID (LA CLAVE DEL ANCHO IGUALADO)
 ===================================================== */
 .services-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
+  width: 100%;
+  max-width: 1305px;
+  margin: 0 auto;
 }
 
 /* =====================================================
@@ -542,26 +576,12 @@ main {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  box-sizing: border-box;
 }
 
-/* acento superior */
-.service-card::before {
-  background: linear-gradient(90deg, #7C3AED, rgba(124, 58, 237, 0.4), transparent);
-}
-
-/* hover */
-.service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(124, 58, 237, 0.35);
-}
-
-/* =====================================================
-   CARD CONTENT
-===================================================== */
 .service-card h3 {
   font-family: "Anton", sans-serif;
   font-size: 1.6rem;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #F2F2F2;
 }
@@ -573,15 +593,11 @@ main {
   opacity: 0.85;
 }
 
-/* =====================================================
-   LIST
-===================================================== */
 .service-card ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-top: 0.6rem;
 }
 
 .service-card li {
@@ -604,31 +620,68 @@ main {
 }
 
 /* =====================================================
-   RESPONSIVE
+   RESPONSIVE TABLET / MOBILE
 ===================================================== */
 @media (max-width: 1024px) {
+  .services-wrapper {
+    padding-inline: 2rem;
+  }
   .services-cards {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .services-header {
+    max-width: 680px;
+    margin: 0 auto;
   }
 }
 @media (max-width: 768px) {
   .services-section {
-    min-height: auto;
     padding: 60px 0;
   }
   .services-wrapper {
     padding-inline: 1.4rem;
-    gap: 2.2rem;
+  }
+  .services-cards, .services-header {
+    max-width: 100%;
   }
   .service-card {
     padding: 2.2rem 2rem;
   }
-  .service-card h3 {
-    font-size: 1.4rem;
+}
+/* =====================================================
+   FIX LANDSCAPE (SIMETRÍA TOTAL CON CLASSES)
+===================================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .services-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 0 40px;
+    display: block;
   }
-  .services-intro {
-    font-size: 0.95rem;
+  .services-wrapper {
+    display: block;
+    padding-inline: 2rem;
+  }
+  .services-header {
+    margin: 0 auto 2.5rem;
+    max-width: 90%;
+  }
+  .services-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .service-card {
+    width: 100%;
+    padding: 1.5rem;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
   }
 }
 /* =====================================================
@@ -636,13 +689,13 @@ main {
 ===================================================== */
 .classes-section {
   position: relative;
-  height: 100vh;
+  min-height: calc(100vh - 65px); /* 👈 Cambiado a min-height para flexibilidad */
   width: 100%;
-  overflow: hidden;
-  padding-top: 65px; /* nav sticky */
+  overflow-x: hidden;
   background-color: #0B0B0D;
   display: flex;
   align-items: center;
+  padding: 2rem 0; /* Añadido un padding de seguridad */
 }
 
 /* =====================================================
@@ -650,13 +703,12 @@ main {
 ===================================================== */
 .bg-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 115vw;
-  height: 115vh;
-  transform: translate(-50%, -50%) scaleX(-1);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  transform: scaleX(-1);
   z-index: 1;
   pointer-events: none;
 }
@@ -700,7 +752,7 @@ main {
 }
 
 /* =====================================================
-   TITLE
+   TITLE & TEXT
 ===================================================== */
 .classes-title {
   font-family: "Anton", sans-serif;
@@ -715,9 +767,6 @@ main {
   color: #3B82F6;
 }
 
-/* =====================================================
-   TEXT
-===================================================== */
 .classes-text p {
   font-family: "Roboto", sans-serif;
   font-size: 0.95rem;
@@ -730,9 +779,6 @@ main {
   font-weight: 600;
 }
 
-/* =====================================================
-   HIGHLIGHT
-===================================================== */
 .highlight-box {
   margin-top: 1.8rem;
   padding-top: 1.4rem;
@@ -744,7 +790,7 @@ main {
 }
 
 /* =====================================================
-   RESPONSIVE
+   RESPONSIVE TABLET / DESKTOP SMALL
 ===================================================== */
 @media (max-width: 1024px) {
   .classes-container {
@@ -754,37 +800,49 @@ main {
     max-width: 680px;
   }
 }
+/* =====================================================
+   RESPONSIVE MOBILE (VERTICAL)
+===================================================== */
 @media (max-width: 768px) {
   .classes-section {
     align-items: flex-start;
-  }
-  .classes-overlay {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.85) 40%, rgba(0, 0, 0, 0.55) 70%, rgba(0, 0, 0, 0.35) 100%);
+    padding-top: 2rem;
+    padding-bottom: 6vh;
   }
   .classes-container {
     padding-inline: 1.4rem;
   }
   .classes-card {
-    margin-top: 5vh;
+    margin-top: 2rem;
     padding: 2.2rem 2rem;
-    border-radius: 16px;
+  }
+}
+/* =====================================================
+   FIX LANDSCAPE (EL PROBLEMA)
+   Detecta cuando la pantalla es ancha pero bajita
+===================================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .classes-section {
+    height: auto; /* Permite que la sección crezca */
+    min-height: 100vh;
+    padding: 80px 0 40px; /* Espacio para el header y respiro abajo */
+    display: block; /* Cambiamos de flex a block para evitar estiramientos raros */
+  }
+  .classes-container {
+    display: block; /* El contenedor deja de centrar verticalmente */
+  }
+  .classes-card {
+    margin: 0 auto; /* Centramos la tarjeta horizontalmente */
+    max-width: 90%; /* Aprovechamos el ancho en horizontal */
+    padding: 1.5rem; /* Reducimos padding interno para ganar espacio */
   }
   .classes-title {
-    font-size: 2rem;
-  }
-  .classes-text p {
-    font-size: 0.9rem;
-  }
-  .highlight-box {
-    font-size: 0.85rem;
+    font-size: 1.8rem; /* Título un poco más pequeño en landscape */
+    margin-bottom: 1rem;
   }
 }
-.bg-video {
-  transform: translate(-50%, calc(-50% + 50px)) scaleX(-1) translateX(-5%);
-}
-
 /* =====================================================
-   VARIABLES
+    VARIABLES
 ===================================================== */
 :root {
   --bg-primary: #0B0B0D;
@@ -797,7 +855,7 @@ main {
 }
 
 /* =====================================================
-   RESET
+    RESET
 ===================================================== */
 * {
   margin: 0;
@@ -816,7 +874,7 @@ a {
 }
 
 /* =====================================================
-   SECCIÓN GENERAL
+    SECCIÓN GENERAL
 ===================================================== */
 .testimonials-playlists-section {
   width: 100%;
@@ -833,18 +891,12 @@ a {
 .playlists-block {
   width: 100%;
   max-width: 1400px;
-  padding-inline: 2rem;
+  padding-inline: 2rem; /* 👈 2rem Fijo para Desktop y Tablet */
   margin-inline: auto;
 }
 
-@media (max-width: 768px) {
-  .testimonials-block,
-  .playlists-block {
-    padding-inline: 1.4rem;
-  }
-}
 /* =====================================================
-   TÍTULOS
+    TÍTULOS
 ===================================================== */
 .section-title {
   color: var(--text-primary);
@@ -855,7 +907,7 @@ a {
 }
 
 /* =====================================================
-   BLOQUE TESTIMONIOS
+    BLOQUE TESTIMONIOS
 ===================================================== */
 .testimonials-block {
   flex: 1;
@@ -868,7 +920,6 @@ a {
   position: relative;
 }
 
-/* Swiper */
 .testimonials-swiper {
   padding: 16px 0 56px;
 }
@@ -878,14 +929,14 @@ a {
 }
 
 /* =====================================================
-   CARD TESTIMONIO
+    CARD TESTIMONIO (DESKTOP: 230px)
 ===================================================== */
 .testimonial-card {
   background-color: var(--bg-secondary);
   display: flex;
   border-radius: 18px;
   overflow: hidden;
-  height: 230px;
+  height: 230px; /* 👈 Tamaño original Desktop */
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
   transition: transform 0.4s ease, opacity 0.4s ease;
   opacity: 0.25;
@@ -897,7 +948,6 @@ a {
   transform: scale(1);
 }
 
-/* Imagen */
 .testimonial-image {
   width: 38%;
 }
@@ -911,7 +961,6 @@ a {
      object-position: center 25%;
 }
 
-/* Contenido */
 .testimonial-content {
   padding: 26px;
   display: flex;
@@ -932,7 +981,7 @@ a {
 }
 
 /* =====================================================
-   FLECHAS
+    FLECHAS
 ===================================================== */
 .testimonial-nav {
   position: absolute;
@@ -947,6 +996,9 @@ a {
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
 }
 
@@ -965,7 +1017,7 @@ a {
 }
 
 /* =====================================================
-   PAGINACIÓN
+    PAGINACIÓN
 ===================================================== */
 .testimonials-pagination {
   bottom: 0 !important;
@@ -982,7 +1034,7 @@ a {
 }
 
 /* =====================================================
-   BLOQUE PLAYLISTS
+    BLOQUE PLAYLISTS
 ===================================================== */
 .playlists-block {
   margin-top: 12px;
@@ -994,9 +1046,8 @@ a {
   gap: 14px;
 }
 
-/* CARD PLAYLIST */
 .playlist-card {
-  position: relative; /* 🔑 CLAVE para que la img no se escape */
+  position: relative;
   height: 80px;
   padding: 12px;
   border-radius: 14px;
@@ -1008,7 +1059,6 @@ a {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Imagen Spotify */
 .playlist-card img {
   position: absolute;
   inset: 0;
@@ -1020,7 +1070,6 @@ a {
   transition: opacity 0.3s ease;
 }
 
-/* Texto */
 .playlist-card span {
   position: relative;
   z-index: 1;
@@ -1029,20 +1078,27 @@ a {
   font-size: 0.85rem;
 }
 
-/* Hover */
 .playlist-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5);
 }
 
-.playlist-card:hover img {
-  opacity: 1;
-}
-
 /* =====================================================
-   RESPONSIVE
+    RESPONSIVE TABLET (1024px - LANDING)
 ===================================================== */
 @media (max-width: 1024px) {
+  .testimonials-block,
+  .playlists-block {
+    padding-inline: 2rem;
+    max-width: 680px; /* Sincronizado con Classes */
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    height: 190px; /* 👈 AJUSTE: Más corta en Tablet/Landing */
+  }
+  .testimonial-content {
+    padding: 20px;
+  }
   .playlists-wrapper {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1053,60 +1109,65 @@ a {
     right: -40px;
   }
 }
+/* =====================================================
+    RESPONSIVE MOBILE (768px)
+===================================================== */
 @media (max-width: 768px) {
-  /* Sección general */
   .testimonials-playlists-section {
     height: auto;
     padding-bottom: 48px;
   }
-  /* Card testimonio */
+  .testimonials-block,
+  .playlists-block {
+    padding-inline: 1.4rem;
+    max-width: 100%;
+  }
   .testimonial-card {
     flex-direction: column;
-    height: 450px; /* 👈 más larga para que la imagen se luzca */
+    height: 450px;
   }
-  /* Imagen */
   .testimonial-image {
     width: 100%;
-    height: 250px; /* 👈 antes 160px, ahora respira mejor */
+    height: 250px;
   }
-  .testimonial-image img {
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
-    -o-object-position: center 20%;
-       object-position: center 20%;
-  }
-  /* Contenido */
-  .testimonial-content {
-    padding: 22px;
-  }
-  /* Playlists */
   .playlists-wrapper {
     grid-template-columns: 1fr;
     gap: 14px;
   }
-  .playlist-card {
-    height: 80px;
-  }
-  /* Flechas fuera */
   .testimonial-nav {
     display: none;
   }
 }
-@media (max-width: 768px) {
-  .playlist-card:active {
-    transform: scale(0.96);
-    filter: brightness(1.15);
+/* =====================================================
+    FIX LANDSCAPE (SIMETRÍA CON CLASSES)
+===================================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .testimonials-playlists-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 0 40px;
+    display: block;
   }
-  .playlist-card:active img {
-    opacity: 1; /* 👈 la imagen se ve clara mientras se presiona */
+  .testimonials-block,
+  .playlists-block {
+    display: block;
+    margin: 0 auto 30px;
+    max-width: 90%;
+    padding-inline: 2rem;
+  }
+  .testimonial-card {
+    height: 180px; /* Altura optimizada para landscape */
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .playlists-wrapper {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
-.playlist-card {
-  transition: transform 0.2s ease, filter 0.2s ease;
-}
-
 /* =====================================================
    FOOTER
 ===================================================== */
@@ -1114,40 +1175,46 @@ a {
   background-color: #0f0f14;
   color: #F2F2F2;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-/* CONTENT WRAPPER REAL */
+/* CONTENT WRAPPER (EL CONTENEDOR) */
 .footer-container {
+  width: 100%;
   max-width: 1400px;
-  margin-inline: auto;
-  /* 👇 padding SOLO acá */
+  margin: 0 auto;
   padding-block: 4rem;
   padding-inline: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
-/* TODO VA A LA IZQUIERDA */
+/* BLOQUE DE CONTENIDO (IZQUIERDA) */
 .footer-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1.6rem;
+  width: 100%;
 }
 
 /* =====================================================
    LOGO PRINCIPAL
 ===================================================== */
 .footer-logo {
-  width: 140px; /* 👈 AJUSTÁ ACÁ tamaño logo Power Fit */
+  width: 140px;
   height: auto;
 }
 
 /* =====================================================
-   NAVEGACIÓN
-===================================================== */
+   NAVEGACIÓN (UNO ABAJO DEL OTRO)
+==================================================== */
 .footer-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .footer-nav a {
@@ -1166,11 +1233,11 @@ a {
 ===================================================== */
 .footer-social {
   display: flex;
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
 .footer-social img {
-  height: 22px; /* 👈 AJUSTÁ ACÁ tamaño iconos redes */
+  height: 22px;
   width: auto;
   opacity: 0.8;
   transition: opacity 0.25s ease;
@@ -1187,6 +1254,7 @@ a {
   font-size: 0.75rem;
   opacity: 0.5;
   max-width: 420px;
+  line-height: 1.5;
 }
 
 /* =====================================================
@@ -1196,33 +1264,60 @@ a {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  margin-top: 0.5rem;
 }
 
 .footer-author span {
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   opacity: 0.45;
+  text-transform: uppercase;
 }
 
 .footer-agency-logo {
-  width: 90px; /* 👈 AJUSTÁ ACÁ tamaño logo Brickell Lab */
+  width: 90px;
   height: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
 }
 
 /* =====================================================
-   RESPONSIVE
+   RESPONSIVE (TABLET - 1024px)
+===================================================== */
+@media (max-width: 1024px) {
+  .footer-container {
+    padding-inline: 2rem;
+    max-width: 680px; /* 👈 IGUALADO A CLASSES/SERVICES/TESTIMONIALS */
+    margin: 0 auto;
+  }
+}
+/* =====================================================
+   RESPONSIVE (MOBILE - 768px)
 ===================================================== */
 @media (max-width: 768px) {
   .footer-container {
-    padding: 1.4rem;
+    padding-block: 3rem;
+    padding-inline: 1.4rem; /* 👈 Cambio a mobile padding */
+    max-width: 100%;
   }
   .footer-logo {
     width: 120px;
   }
   .footer-agency-logo {
     width: 80px;
+  }
+}
+/* =====================================================
+   FIX LANDSCAPE (SIMETRÍA TOTAL)
+===================================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .site-footer {
+    display: block;
+  }
+  .footer-container {
+    max-width: 90%; /* 👈 Igualado a tu ajuste de Classes */
+    margin: 0 auto;
+    padding-inline: 2rem;
+    padding-block: 2.5rem;
+  }
+  .footer-left {
+    gap: 1.5rem;
   }
 }/*# sourceMappingURL=main.css.map */

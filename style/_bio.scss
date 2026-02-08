@@ -1,7 +1,7 @@
 @use 'variables' as vars;
 
 /* =====================================================
-   CREATOR SECTION
+    CREATOR SECTION
 ===================================================== */
 
 .creator-section {
@@ -18,7 +18,7 @@
 }
 
 /* =====================================================
-   CONTENT WRAPPER
+    CONTENT WRAPPER
 ===================================================== */
 
 .creator-container {
@@ -33,7 +33,7 @@
 }
 
 /* =====================================================
-   IMAGE CARD
+    IMAGE CARD
 ===================================================== */
 
 .creator-image-card {
@@ -59,7 +59,7 @@
 }
 
 /* =====================================================
-   TEXT CARD
+    TEXT CARD
 ===================================================== */
 
 .creator-text-card {
@@ -81,7 +81,7 @@
 }
 
 /* =====================================================
-   TITLES
+    TITLES
 ===================================================== */
 
 .creator-title {
@@ -105,7 +105,7 @@
 }
 
 /* =====================================================
-   TEXT
+    TEXT
 ===================================================== */
 
 .creator-text p {
@@ -129,7 +129,7 @@
 }
 
 /* =====================================================
-   RESPONSIVE
+    RESPONSIVE
 ===================================================== */
 
 @media (max-width: 1024px) {
@@ -137,12 +137,12 @@
     flex-direction: column; // apila
     align-items: center;
     gap: 2rem;
-    padding-inline: vars.$mobile-padding; // coincide con sección clases
+    padding-inline: 1.4rem; // Igualado a sección anterior
   }
 
-.creator-image-card,
+  .creator-image-card,
   .creator-text-card {
-    max-width: 100%;
+    max-width: 680px; // Igualado a sección anterior
     height: auto;
   }
 }
@@ -159,15 +159,15 @@
     flex-direction: column-reverse;
     align-items: center;
     gap: 1.5rem;
-    padding-inline: vars.$mobile-padding;
+    padding-inline: 1.4rem; // Igualado a sección anterior
   }
 
-.creator-image-card {
-  width: 100%;
-  height: 40vh;          // 👈 achica SOLO la imagen
-  max-height: 280px;
-  flex-shrink: 0;        // 👈 CLAVE: evita que el texto la aplaste
-}
+  .creator-image-card {
+    width: 100%;
+    height: 40vh;          // 👈 achica SOLO la imagen
+    max-height: 280px;
+    flex-shrink: 0;        // 👈 CLAVE: evita que el texto la aplaste
+  }
 
   .creator-text-card {
     width: 100%;
@@ -185,5 +185,43 @@
 
   .creator-highlight {
     font-size: 0.85rem;
+  }
+}
+
+/* =====================================================
+    FIX LANDSCAPE (RESPONSIVE HORIZONTAL)
+===================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .creator-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 0 40px;
+    display: block; // Evita centrado vertical que rompe el scroll
+  }
+
+  .creator-container {
+    display: block; // Apila los elementos
+    padding-inline: 2rem; // Mismo aire que la sección anterior
+  }
+
+  .creator-image-card,
+  .creator-text-card {
+    margin: 0 auto 1.5rem; // Centra y da espacio entre bloques
+    max-width: 90%;        // Igualado a la sección anterior
+    width: 100%;
+    height: auto;
+  }
+
+  .creator-image-card {
+    height: 300px;
+  }
+
+  .creator-text-card {
+    padding: 1.5rem; // Padding reducido para ganar espacio vertical
+  }
+
+  .creator-title {
+    font-size: 1.8rem;
   }
 }

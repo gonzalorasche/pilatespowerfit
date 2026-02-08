@@ -1,12 +1,11 @@
 /* =====================================================
-   VARIABLES
+    VARIABLES
 ===================================================== */
 
 :root {
   --bg-primary: #0B0B0D;
   --bg-secondary: #16161A;
   --text-primary: #F2F2F2;
-
   --neon-green: #32FF6A;
   --power-red: #FF4D4D;
   --electric-blue: #3B82F6;
@@ -14,7 +13,7 @@
 }
 
 /* =====================================================
-   RESET
+    RESET
 ===================================================== */
 
 * {
@@ -34,9 +33,8 @@ a {
 }
 
 /* =====================================================
-   SECCIÓN GENERAL
+    SECCIÓN GENERAL
 ===================================================== */
-
 
 .testimonials-playlists-section {
   width: 100%;
@@ -52,23 +50,13 @@ a {
 .testimonials-block,
 .playlists-block {
   width: 100%;
-  max-width: 1400px;      // IGUAL que tus otras secciones
-  padding-inline: 2rem;   // IGUAL que tus otras secciones
+  max-width: 1400px;
+  padding-inline: 2rem;   /* 👈 2rem Fijo para Desktop y Tablet */
   margin-inline: auto;
 }
 
-
-@media (max-width: 768px) {
-  .testimonials-block,
-  .playlists-block {
-    padding-inline: 1.4rem;
-  }
-}
-
-
-
 /* =====================================================
-   TÍTULOS
+    TÍTULOS
 ===================================================== */
 
 .section-title {
@@ -80,7 +68,7 @@ a {
 }
 
 /* =====================================================
-   BLOQUE TESTIMONIOS
+    BLOQUE TESTIMONIOS
 ===================================================== */
 
 .testimonials-block {
@@ -94,7 +82,6 @@ a {
   position: relative;
 }
 
-/* Swiper */
 .testimonials-swiper {
   padding: 16px 0 56px;
 }
@@ -104,7 +91,7 @@ a {
 }
 
 /* =====================================================
-   CARD TESTIMONIO
+    CARD TESTIMONIO (DESKTOP: 230px)
 ===================================================== */
 
 .testimonial-card {
@@ -112,7 +99,7 @@ a {
   display: flex;
   border-radius: 18px;
   overflow: hidden;
-  height: 230px;
+  height: 230px; /* 👈 Tamaño original Desktop */
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
   transition: transform 0.4s ease, opacity 0.4s ease;
   opacity: 0.25;
@@ -124,7 +111,6 @@ a {
   transform: scale(1);
 }
 
-/* Imagen */
 .testimonial-image {
   width: 38%;
 }
@@ -136,7 +122,6 @@ a {
   object-position: center 25%;
 }
 
-/* Contenido */
 .testimonial-content {
   padding: 26px;
   display: flex;
@@ -157,7 +142,7 @@ a {
 }
 
 /* =====================================================
-   FLECHAS
+    FLECHAS
 ===================================================== */
 
 .testimonial-nav {
@@ -173,6 +158,9 @@ a {
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
 }
 
@@ -182,16 +170,11 @@ a {
   transform: translateY(-50%) scale(1.1);
 }
 
-.testimonial-prev {
-  left: -64px;
-}
-
-.testimonial-next {
-  right: -64px;
-}
+.testimonial-prev { left: -64px; }
+.testimonial-next { right: -64px; }
 
 /* =====================================================
-   PAGINACIÓN
+    PAGINACIÓN
 ===================================================== */
 
 .testimonials-pagination {
@@ -209,7 +192,7 @@ a {
 }
 
 /* =====================================================
-   BLOQUE PLAYLISTS
+    BLOQUE PLAYLISTS
 ===================================================== */
 
 .playlists-block {
@@ -222,9 +205,8 @@ a {
   gap: 14px;
 }
 
-/* CARD PLAYLIST */
 .playlist-card {
-  position: relative;             /* 🔑 CLAVE para que la img no se escape */
+  position: relative;
   height: 80px;
   padding: 12px;
   border-radius: 14px;
@@ -236,7 +218,6 @@ a {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Imagen Spotify */
 .playlist-card img {
   position: absolute;
   inset: 0;
@@ -247,7 +228,6 @@ a {
   transition: opacity 0.3s ease;
 }
 
-/* Texto */
 .playlist-card span {
   position: relative;
   z-index: 1;
@@ -256,95 +236,105 @@ a {
   font-size: 0.85rem;
 }
 
-
-/* Hover */
 .playlist-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5);
 }
 
-.playlist-card:hover img {
-  opacity: 1;
-}
-
 /* =====================================================
-   RESPONSIVE
+    RESPONSIVE TABLET (1024px - LANDING)
 ===================================================== */
 
 @media (max-width: 1024px) {
+  .testimonials-block,
+  .playlists-block {
+    padding-inline: 2rem; 
+    max-width: 680px; /* Sincronizado con Classes */
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    height: 190px; /* 👈 AJUSTE: Más corta en Tablet/Landing */
+  }
+
+  .testimonial-content {
+    padding: 20px;
+  }
+
   .playlists-wrapper {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .testimonial-prev {
-    left: -40px;
-  }
-
-  .testimonial-next {
-    right: -40px;
-  }
+  .testimonial-prev { left: -40px; }
+  .testimonial-next { right: -40px; }
 }
 
-@media (max-width: 768px) {
+/* =====================================================
+    RESPONSIVE MOBILE (768px)
+===================================================== */
 
-  /* Sección general */
+@media (max-width: 768px) {
   .testimonials-playlists-section {
     height: auto;
     padding-bottom: 48px;
   }
 
-  /* Card testimonio */
+  .testimonials-block,
+  .playlists-block {
+    padding-inline: 1.4rem; 
+    max-width: 100%;
+  }
+
   .testimonial-card {
     flex-direction: column;
-    height: 450px; /* 👈 más larga para que la imagen se luzca */
+    height: 450px; 
   }
 
-  /* Imagen */
   .testimonial-image {
     width: 100%;
-    height: 250px; /* 👈 antes 160px, ahora respira mejor */
+    height: 250px;
   }
 
-  .testimonial-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-  }
-
-  /* Contenido */
-  .testimonial-content {
-    padding: 22px;
-  }
-
-  /* Playlists */
   .playlists-wrapper {
     grid-template-columns: 1fr;
     gap: 14px;
   }
 
-  .playlist-card {
-    height: 80px;
-  }
-
-  /* Flechas fuera */
-  .testimonial-nav {
-    display: none;
-  }
+  .testimonial-nav { display: none; }
 }
 
-@media (max-width: 768px) {
+/* =====================================================
+    FIX LANDSCAPE (SIMETRÍA CON CLASSES)
+===================================================== */
 
-  .playlist-card:active {
-    transform: scale(0.96);
-    filter: brightness(1.15);
+@media (max-height: 500px) and (orientation: landscape) {
+  .testimonials-playlists-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 0 40px;
+    display: block; 
   }
 
-  .playlist-card:active img {
-    opacity: 1; /* 👈 la imagen se ve clara mientras se presiona */
+  .testimonials-block,
+  .playlists-block {
+    display: block;
+    margin: 0 auto 30px;
+    max-width: 90%; 
+    padding-inline: 2rem;
   }
-}
 
-.playlist-card {
-  transition: transform 0.2s ease, filter 0.2s ease;
+  .testimonial-card {
+    height: 180px; /* Altura optimizada para landscape */
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .playlists-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

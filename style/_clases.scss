@@ -6,13 +6,13 @@
 
 .classes-section {
   position: relative;
-  height: 100vh;
+  min-height: calc(100vh - 65px); /* 👈 Cambiado a min-height para flexibilidad */
   width: 100%;
-  overflow: hidden;
-  padding-top: 65px; /* nav sticky */
+  overflow-x: hidden;
   background-color: vars.$bg-primary;
   display: flex;
   align-items: center;
+  padding: 2rem 0; /* Añadido un padding de seguridad */
 }
 
 /* =====================================================
@@ -21,12 +21,11 @@
 
 .bg-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 115vw;
-  height: 115vh;
-  transform: translate(-50%, -50%) scaleX(-1);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  transform: scaleX(-1);
   z-index: 1;
   pointer-events: none;
 }
@@ -59,7 +58,6 @@
   max-width: 1400px;
   margin: 0 auto;
   padding-inline: 2rem;
-
   display: flex;
   align-items: center;
 }
@@ -73,19 +71,16 @@
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-
   padding: 3rem 3.2rem;
   border-radius: 18px;
-
   border: 1px solid rgba(vars.$electric-blue, 0.35);
   box-shadow:
     0 0 0 1px rgba(vars.$electric-blue, 0.15),
     0 24px 70px rgba(0, 0, 0, 0.65);
 }
 
-
 /* =====================================================
-   TITLE
+   TITLE & TEXT
 ===================================================== */
 
 .classes-title {
@@ -102,10 +97,6 @@
   }
 }
 
-/* =====================================================
-   TEXT
-===================================================== */
-
 .classes-text p {
   font-family: 'Roboto', sans-serif;
   font-size: 0.95rem;
@@ -119,50 +110,38 @@
   }
 }
 
-/* =====================================================
-   HIGHLIGHT
-===================================================== */
-
 .highlight-box {
   margin-top: 1.8rem;
   padding-top: 1.4rem;
-
   border-top: 1px solid rgba(vars.$electric-blue, 0.4);
-
   font-size: 0.95rem;
   line-height: 1.4;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-
 /* =====================================================
-   RESPONSIVE
+   RESPONSIVE TABLET / DESKTOP SMALL
 ===================================================== */
 
 @media (max-width: 1024px) {
   .classes-container {
     justify-content: center;
   }
-
   .classes-card {
     max-width: 680px;
   }
 }
 
+/* =====================================================
+   RESPONSIVE MOBILE (VERTICAL)
+===================================================== */
+
 @media (max-width: 768px) {
   .classes-section {
     align-items: flex-start;
-  }
-
-  .classes-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.85) 40%,
-      rgba(0, 0, 0, 0.55) 70%,
-      rgba(0, 0, 0, 0.35) 100%
-    );
+    padding-top: 2rem;
+    padding-bottom: 6vh;
   }
 
   .classes-container {
@@ -170,25 +149,36 @@
   }
 
   .classes-card {
-    margin-top: 5vh;
+    margin-top: 2rem;
     padding: 2.2rem 2rem;
-    border-radius: 16px;
+  }
+}
+
+/* =====================================================
+   FIX LANDSCAPE (EL PROBLEMA)
+   Detecta cuando la pantalla es ancha pero bajita
+===================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .classes-section {
+    height: auto;           /* Permite que la sección crezca */
+    min-height: 100vh;
+    padding: 80px 0 40px;   /* Espacio para el header y respiro abajo */
+    display: block;         /* Cambiamos de flex a block para evitar estiramientos raros */
   }
 
+  .classes-container {
+    display: block;         /* El contenedor deja de centrar verticalmente */
+  }
+
+  .classes-card {
+    margin: 0 auto;         /* Centramos la tarjeta horizontalmente */
+    max-width: 90%;         /* Aprovechamos el ancho en horizontal */
+    padding: 1.5rem;        /* Reducimos padding interno para ganar espacio */
+  }
+  
   .classes-title {
-    font-size: 2rem;
-  }
-
-  .classes-text p {
-    font-size: 0.9rem;
-  }
-
-  .highlight-box {
-    font-size: 0.85rem;
+    font-size: 1.8rem;      /* Título un poco más pequeño en landscape */
+    margin-bottom: 1rem;
   }
 }
-
-.bg-video {
-  transform: translate(-50%, calc(-50% + 50px)) scaleX(-1) translateX(-5%);
-}
-
