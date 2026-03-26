@@ -1,13 +1,24 @@
-// Colores Principales
+// --- Colores Base ---
 $bg-primary: #0B0B0D;
 $bg-secondary: #16161A;
 $text-primary: #F2F2F2;
 
-// Colores de Acento
+// --- Acentos (Mantengo tus colores) ---
 $neon-green: #32FF6A;
 $power-red: #FF4D4D;
 $electric-blue: #3B82F6;
 $deep-violet: #7C3AED;
 
-// Padding Responsive
-$mobile-padding: 1.4rem;
+// --- Apple App-Style Tokens (NUEVO) ---
+$radius-app: 28px;        // Curvatura orgánica de iOS
+$radius-inner: 18px;      // Para elementos dentro de cards
+$mobile-padding: 1.2rem;  // Un poco más ajustado para parecer App
+
+// Vidrio (Glassmorphism)
+$glass-bg: rgba(255, 255, 255, 0.03);
+$glass-border: rgba(255, 255, 255, 0.08);
+$glass-blur: blur(20px) saturate(160%);
+
+// Sombras de Profundidad
+$shadow-app: 0 20px 40px rgba(0, 0, 0, 0.4);
+$shadow-inset: inset 0 1px 1px rgba(255, 255, 255, 0.1);

@@ -5,227 +5,173 @@
 ===================================================== */
 
 .services-section {
-  position: relative;
-  min-height: calc(100vh - 65px); 
-  width: 100%;
-  background-color: vars.$bg-primary;
-  display: flex;
-  align-items: center;
-  padding: 40px 0;
-  box-sizing: border-box;
-}
+    position: relative;
+    width: 100%;
+    background-color: vars.$bg-primary !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 
-/* =====================================================
-   CONTENT WRAPPER
-===================================================== */
+    // Desktop: Mantenemos el look de una pantalla
+    @media (min-width: 1025px) {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    // Responsive / Landscape: Igualamos a Bio
+    @media (max-width: 1024px) {
+        min-height: auto;
+        padding: 100px 0 60px; // Aire para que no se pegue al nav
+    }
+}
 
 .services-wrapper {
-  width: 100%;
-  max-width: 1400px; 
-  margin: 0 auto;
-  padding-inline: 2rem; // 👈 2rem Fijo para Desktop y Tablet
-  display: flex;
-  flex-direction: column;
-  gap: 3.5rem;
-  box-sizing: border-box;
+    width: 100%;
+    max-width: 1400px; 
+    margin: 0 auto;
+    
+    // 👈 CLAVE: Usamos el padding exacto de Bio (1.5rem)
+    padding: 0 1.5rem; 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+        gap: 1.5rem;
+    }
 }
 
 /* =====================================================
-   HEADER (ALINEADO CON EL CONTENIDO)
-===================================================== */
-
-.services-header {
-  width: 100%;
-  max-width: 1305px; // Ajustado para que el texto no vuele solo
-  margin: 0 auto;
-}
-
-.services-intro {
-  margin-top: 1rem;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: vars.$text-primary;
-  opacity: 0.85;
-  max-width: 620px; // Mantiene la legibilidad del texto de arriba
-}
-
-/* =====================================================
-   SECTION TITLE
-===================================================== */
-
-.section-title {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  line-height: 1.05;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: vars.$text-primary;
-  margin-bottom: 0.6rem;
-  position: relative;
-}
-
-.section-title::after {
-  content: '';
-  display: block;
-  width: 56px;
-  height: 4px;
-  margin-top: 1rem;
-  background-color: vars.$deep-violet;
-  border-radius: 4px;
-}
-
-/* =====================================================
-   CARDS GRID (LA CLAVE DEL ANCHO IGUALADO)
+   CARDS GRID - SIN ANCHOS FIJOS
 ===================================================== */
 
 .services-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-  width: 100%;
-  max-width: 1305px; // 👈 Ajustado para que las 2 cards + gap midan lo mismo que el resto
-  margin: 0 auto;
-}
-
-/* =====================================================
-   SERVICE CARD
-===================================================== */
-
-.service-card {
-  position: relative;
-  background: rgba(0, 0, 0, 0.65);
-  border-radius: 20px;
-  padding: 2.8rem 2.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  border: 1px solid rgba(vars.$deep-violet, 0.35);
-  box-shadow:
-    0 0 0 1px rgba(vars.$deep-violet, 0.15),
-    0 22px 60px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  box-sizing: border-box;
-}
-
-.service-card h3 {
-  font-family: 'Anton', sans-serif;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  color: vars.$text-primary;
-}
-
-.service-card p {
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: vars.$text-primary;
-  opacity: 0.85;
-}
-
-.service-card ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.service-card li {
-  font-size: 0.9rem;
-  color: vars.$text-primary;
-  opacity: 0.9;
-  padding-left: 18px;
-  position: relative;
-}
-
-.service-card li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.6em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: vars.$deep-violet;
-}
-
-/* =====================================================
-   RESPONSIVE TABLET / MOBILE
-===================================================== */
-
-@media (max-width: 1024px) {
-  .services-wrapper {
-    padding-inline: 2rem; 
-  }
-
-  .services-cards {
-    grid-template-columns: 1fr;
-    max-width: 680px; // 👈 IGUALADO EXACTO a .classes-card en tablet
-    margin: 0 auto;
-  }
-
-  .services-header {
-    max-width: 680px; // 👈 Texto alineado con las cards apiladas
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .services-section {
-    padding: 60px 0;
-  }
-
-  .services-wrapper {
-    padding-inline: vars.$mobile-padding; 
-  }
-
-  .services-cards, .services-header {
-    max-width: 100%;
-  }
-
-  .service-card {
-    padding: 2.2rem 2rem;
-  }
-}
-
-/* =====================================================
-   FIX LANDSCAPE (SIMETRÍA TOTAL CON CLASSES)
-===================================================== */
-
-@media (max-height: 500px) and (orientation: landscape) {
-  .services-section {
-    height: auto;
-    min-height: 100vh;
-    padding: 80px 0 40px;
-    display: block; 
-  }
-
-  .services-wrapper {
-    display: block; 
-    padding-inline: 2rem; 
-  }
-
-  .services-header {
-    margin: 0 auto 2.5rem;
-    max-width: 90%; // 👈 Igualado a Classes Landscape
-  }
-
-  .services-cards {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    max-width: 90%; // 👈 Igualado a Classes Landscape
+    gap: 2rem;
+    width: 100%; // 👈 Ocupa el 100% del wrapper, como en Bio
     margin: 0 auto;
-  }
+}
 
-  .service-card {
+.service-card-horizontal {
+    position: relative;
+    display: flex;
+    width: 100%; // Aseguramos que no se escape del contenedor
+    background-color: vars.$bg-primary !important;
+    backdrop-filter: blur(35px) saturate(200%);
+    -webkit-backdrop-filter: blur(35px) saturate(200%);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    min-height: 220px;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+        transform: translateY(-8px);
+        border-color: rgba(vars.$deep-violet, 0.5);
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 30px rgba(vars.$deep-violet, 0.15);
+    }
+
+    /* Info Izquierda */
+    .card-left-info {
+        width: 38%;
+        padding: 3rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            color: vars.$text-primary;
+            background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.4;
+            opacity: 0.6;
+        }
+    }
+
+    /* Contenido Derecha (Bullets/Mapa) */
+    .card-right-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    /* RESPONSIVE LANDSCAPE / MOBILE - EL SALTO DE BIO */
+    @media (max-width: 900px) {
+        flex-direction: column;
+        min-height: auto;
+        
+        .card-left-info {
+            width: 100%;
+            border-right: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.2rem;
+            text-align: center;
+        }
+        
+        .card-right-content {
+            padding: 2.2rem;
+            min-height: 200px;
+        }
+    }
+}
+
+/* Bullets y Mapa (Se mantienen igual para no perder el estilo) */
+.bullets-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    
+    li {
+        font-size: 0.95rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        position: relative;
+        padding-left: 30px;
+        color: vars.$text-primary;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 7px;
+            height: 7px;
+            background: vars.$deep-violet;
+            border-radius: 50%;
+            box-shadow: 0 0 12px vars.$deep-violet;
+        }
+    }
+}
+
+.map-container {
     width: 100%;
-    padding: 1.5rem;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
+    height: 100%;
+    filter: grayscale(1) invert(0.94) contrast(1.1);
+    opacity: 0.6;
+    transition: all 0.8s ease;
+    iframe { width: 100%; height: 100%; border: 0; }
+    .service-card-horizontal:hover & {
+        filter: grayscale(0) invert(0) contrast(1);
+        opacity: 1;
+    }
 }

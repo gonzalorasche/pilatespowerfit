@@ -22,7 +22,7 @@ main {
 }
 
 /* =========================
-   NAVBAR
+   NAVBAR (APPLE INTERFACE)
 ========================= */
 .navbar {
   width: 100%;
@@ -33,10 +33,12 @@ main {
   z-index: 1000;
   display: flex;
   align-items: center;
-  background: rgba(11, 11, 13, 0.82);
-  backdrop-filter: blur(14px) saturate(120%);
-  -webkit-backdrop-filter: blur(14px) saturate(120%);
-  border-bottom: 1px solid rgba(124, 58, 237, 0.18);
+  /* Apple Glass Effect: Más transparente pero con más saturación */
+  background: rgba(11, 11, 13, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  /* Border Hairline: El secreto de Apple es un borde casi invisible */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 @media (max-width: 768px) {
   .navbar {
@@ -48,7 +50,7 @@ main {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding-inline: 1.4rem;
+  padding-inline: 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,6 +72,10 @@ main {
 .logo {
   display: flex;
   align-items: center;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.logo:hover {
+  opacity: 0.7;
 }
 .logo .logo-img {
   height: 35px;
@@ -83,41 +89,43 @@ main {
 }
 
 /* =========================
-   CTA BUTTON – LOW PROFILE
+   CTA BUTTON (ACTION CENTER STYLE)
 ========================= */
 .btn-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(124, 58, 237, 0.18);
-  color: rgba(255, 255, 255, 0.9);
+  /* Estética Apple: Sólido, tipografía pesada y contraste máximo */
+  background: #F2F2F2;
+  color: #000;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  /* Clave para el centrado perfecto */
+  letter-spacing: 0.08em;
+  /* Ajuste de padding para compensar el peso visual */
   line-height: 1;
-  padding: 7px 18px 6px;
+  padding: 10px 22px 9px;
   border-radius: 999px;
-  border: 1px solid rgba(124, 58, 237, 0.35);
+  border: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.15);
-  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  /* Sombra suave de elevación (Depth) */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* Animación tipo iOS: Springy y elástica */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-cta:hover {
-  background: rgba(124, 58, 237, 0.28);
-  border-color: rgba(124, 58, 237, 0.6);
-  box-shadow: 0 0 14px rgba(124, 58, 237, 0.35), 0 6px 22px rgba(124, 58, 237, 0.3);
-  transform: translateY(-1px);
+  background: #ffffff;
+  transform: scale(1.05) translateY(-1px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
 }
 .btn-cta:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
+  transform: scale(0.96);
+  background: rgba(255, 255, 255, 0.9);
 }
 @media (max-width: 768px) {
   .btn-cta {
-    padding: 6px 14px 5px;
+    padding: 8px 16px 7px;
     font-size: 0.65rem;
   }
 }
@@ -167,7 +175,7 @@ main {
 @media (max-width: 768px) {
   .hero-container {
     height: 100vh;
-    padding-inline: 1.4rem;
+    padding-inline: 1.2rem;
     align-items: flex-start;
     padding-top: 180px;
   }
@@ -251,230 +259,398 @@ main {
     max-width: 90%;
   }
 }
+/* 3. EL AJUSTE PARA LANDSCAPE (Horizontal) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .services-section {
+    height: auto;
+    padding: 80px 0;
+  }
+  .services-wrapper {
+    max-width: 90%;
+    padding-inline: 1.2rem;
+  }
+  .services-cards {
+    max-width: 100%;
+  }
+}
 /* =====================================================
-    CREATOR SECTION
+   1. MASTER CONTAINER & VIDEO ENGINE
 ===================================================== */
-.creator-section {
-  min-height: calc(100vh - 65px);
+.master-vanguard-section {
+  position: relative;
   width: 100%;
-  background-color: #0B0B0D;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  padding: clamp(80px, 10vh, 160px) 0;
+  background-color: #000;
   overflow: hidden;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  z-index: 1;
 }
 
-/* =====================================================
-    CONTENT WRAPPER
-===================================================== */
-.creator-container {
-  max-width: 1400px;
+.video-viewport {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.video-viewport .bg-video-master {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: 100vw;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: brightness(0.3) contrast(1.1) grayscale(0.2);
+}
+.video-viewport .master-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(11, 11, 13, 0.9) 100%);
+  backdrop-filter: saturate(1.2);
+}
+
+.master-wrapper {
   width: 100%;
+  max-width: 1300px;
   margin: 0 auto;
-  padding-inline: 2rem;
+  padding: 0 1.5rem;
   display: flex;
-  gap: 3rem;
-  align-items: stretch;
-  justify-content: center;
+  flex-direction: column;
+  gap: 100px;
+}
+@media (max-width: 1024px) {
+  .master-wrapper {
+    gap: 60px;
+  }
+}
+@media (max-width: 768px) {
+  .master-wrapper {
+    gap: 40px;
+  }
 }
 
 /* =====================================================
-    IMAGE CARD
+   2. CAPSULE ARCHITECTURE (Glassmorphism Pro)
 ===================================================== */
-.creator-image-card {
-  flex: 1;
-  max-width: 640px;
-  height: 75vh;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 77, 77, 0.35);
-  box-shadow: 0 0 0 1px rgba(255, 77, 77, 0.15), 0 24px 70px rgba(0, 0, 0, 0.65);
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+.glass-capsule {
+  display: flex;
+  width: 100%;
+  min-height: 540px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+.glass-capsule:hover {
+  transform: translateY(-10px) scale(1.01);
+  border-color: rgba(255, 77, 77, 0.3);
+}
+@media (max-width: 1024px) {
+  .glass-capsule {
+    flex-direction: column;
+    min-height: auto;
+  }
 }
 
-.creator-image-card img {
+/* =====================================================
+   3. COLUMNS & LAYOUT (Desktop/Mobile)
+===================================================== */
+/* Columna Izquierda (Data/Media) */
+.capsule-left-specs, .capsule-left-media {
+  width: 40%;
+  position: relative;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 4rem;
+  background: rgba(255, 255, 255, 0.01);
+}
+@media (max-width: 1024px) {
+  .capsule-left-specs, .capsule-left-media {
+    width: 100%;
+    padding: 3.5rem 2rem;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+.capsule-left-media {
+  padding: 0;
+  overflow: hidden;
+  height: auto;
+  min-height: 450px;
+}
+.capsule-left-media .creator-img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center top;
-     object-position: center top;
+  -o-object-position: top center;
+     object-position: top center;
+  transition: transform 1.5s ease;
+}
+.capsule-left-media .img-meta-tag {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px 18px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+}
+.capsule-left-media .img-meta-tag .meta-value {
+  color: #FF4D4D;
+  font-weight: 700;
+  margin-left: 8px;
+}
+.capsule-left-media:hover .creator-img {
+  transform: scale(1.05);
 }
 
-/* =====================================================
-    TEXT CARD
-===================================================== */
-.creator-text-card {
+/* Columna Derecha (Content) */
+.capsule-right-content, .capsule-right-info {
   flex: 1;
-  max-width: 640px;
-  height: 75vh;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 18px;
-  padding: 3rem 3.2rem;
-  border: 1px solid rgba(255, 77, 77, 0.35);
-  box-shadow: 0 0 0 1px rgba(255, 77, 77, 0.15), 0 24px 70px rgba(0, 0, 0, 0.65);
+  padding: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
-/* =====================================================
-    TITLES
-===================================================== */
-.creator-title {
-  font-family: "Anton", sans-serif;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  line-height: 1.05;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #F2F2F2;
-  margin-bottom: 0.6rem;
-}
-
-.creator-role {
-  display: inline-block;
-  font-family: "Roboto", sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #FF4D4D;
-  margin-bottom: 1.6rem;
-}
-
-/* =====================================================
-    TEXT
-===================================================== */
-.creator-text p {
-  font-family: "Roboto", sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1rem;
-}
-
-/* DESTACADO */
-.creator-highlight {
-  margin-top: 1.8rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid rgba(255, 77, 77, 0.4);
-  font-size: 0.9rem;
-  line-height: 1.4;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #FF4D4D;
-}
-
-/* =====================================================
-    RESPONSIVE
-===================================================== */
 @media (max-width: 1024px) {
-  .creator-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding-inline: 1.4rem;
-  }
-  .creator-image-card,
-  .creator-text-card {
-    max-width: 680px;
-    height: auto;
+  .capsule-right-content, .capsule-right-info {
+    padding: 3.5rem 2rem;
   }
 }
 @media (max-width: 768px) {
-  .creator-section {
+  .capsule-right-content, .capsule-right-info {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* =====================================================
+   4. TYPOGRAPHY & INTERLINEADOS (The Apple Rule)
+===================================================== */
+.main-title {
+  font-family: "Anton", sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.spec-value {
+  font-family: "Anton", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.spec-value .accent-dot {
+  color: #FF4D4D;
+}
+
+.spec-label, .tech-tag, .role-tag {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #FF4D4D;
+  margin-bottom: 0.8rem;
+}
+
+.tech-tag, .role-tag {
+  color: #7C3AED;
+}
+
+.content-body p, .info-grid p {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1.2rem;
+  font-weight: 300;
+  max-width: 520px;
+}
+
+.brand-line {
+  width: 70px;
+  height: 1px;
+  background: #FF4D4D;
+  margin-top: 1rem;
+  box-shadow: 0 0 10px #FF4D4D;
+}
+
+/* =====================================================
+   5. SPECS & INFO GRID (Micro-layouts)
+===================================================== */
+.spec-item {
+  margin-bottom: 3rem;
+}
+.spec-item:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 1024px) {
+  .spec-item {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 1.5rem;
+  }
+}
+
+.info-grid {
+  margin: 2rem 0;
+}
+.info-grid .info-row {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.info-grid .info-row .info-bullet {
+  color: #FF4D4D;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.info-grid .info-row p {
+  margin-bottom: 0;
+}
+
+.highlight-tag, .info-quote {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-quote {
+  color: #FF4D4D;
+  font-weight: 600;
+  font-style: italic;
+  text-transform: none;
+}
+
+/* =====================================================
+   6. RESPONSIVE HORIZONTAL (LANDSCAPE FIX)
+===================================================== */
+@media (max-height: 600px) and (orientation: landscape) {
+  .master-vanguard-section {
+    padding: 60px 0;
     min-height: auto;
-    padding-top: 50px;
-    padding-bottom: 50px;
   }
-  /* mostrar texto primero */
-  .creator-container {
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 1.5rem;
-    padding-inline: 1.4rem;
+  .glass-capsule {
+    min-height: auto;
+    flex-direction: row;
   }
-  .creator-image-card {
-    width: 100%;
-    height: 40vh;
-    max-height: 280px;
-    flex-shrink: 0;
+  .capsule-left-specs, .capsule-left-media {
+    width: 35%;
+    padding: 2rem;
   }
-  .creator-text-card {
-    width: 100%;
-    padding: 2.2rem 2rem;
-    border-radius: 16px;
+  .capsule-right-content, .capsule-right-info {
+    padding: 2.5rem;
   }
-  .creator-title {
+  .main-title {
     font-size: 2rem;
-  }
-  .creator-text p {
-    font-size: 0.9rem;
-  }
-  .creator-highlight {
-    font-size: 0.85rem;
   }
 }
 /* =====================================================
-    FIX LANDSCAPE (RESPONSIVE HORIZONTAL)
+   7. RESPONSIVE VERTICAL (MOBILE FIX)
 ===================================================== */
-@media (max-height: 500px) and (orientation: landscape) {
-  .creator-section {
-    height: auto;
-    min-height: 100vh;
-    padding: 80px 0 40px;
-    display: block;
+@media (max-width: 768px) {
+  .master-wrapper {
+    gap: 40px;
   }
-  .creator-container {
-    display: block;
-    padding-inline: 2rem;
+  .main-title {
+    font-size: 2.4rem;
+    line-height: 1.1;
   }
-  .creator-image-card,
-  .creator-text-card {
-    margin: 0 auto 1.5rem;
-    max-width: 90%;
-    width: 100%;
-    height: auto;
+  .spec-value {
+    font-size: 2rem;
   }
-  .creator-image-card {
-    height: 300px;
+  .capsule-right-content, .capsule-right-info {
+    text-align: center;
+    align-items: center;
   }
-  .creator-text-card {
-    padding: 1.5rem;
+  .info-row {
+    text-align: left;
   }
-  .creator-title {
-    font-size: 1.8rem;
+  .brand-line {
+    margin: 1.5rem auto 0;
   }
 }
 /* =========================
-   SECTION SEPARATOR – LIQUID GLOW
+   SECTION SEPARATOR – APPLE GLOW
 ========================= */
 .section-separator {
   width: 100%;
-  height: 12px;
+  height: 1px;
   margin: 0;
-  background: linear-gradient(90deg, rgba(124, 58, 237, 0) 0%, rgba(124, 58, 237, 0.15) 18%, rgba(124, 58, 237, 0.35) 45%, rgba(124, 58, 237, 0.55) 50%, rgba(124, 58, 237, 0.35) 55%, rgba(124, 58, 237, 0.15) 82%, rgba(124, 58, 237, 0) 100%);
-  filter: blur(0.6px);
-  box-shadow: 0 0 14px rgba(124, 58, 237, 0.35), 0 0 36px rgba(124, 58, 237, 0.25), 0 0 64px rgba(124, 58, 237, 0.18), 0 0 96px rgba(124, 58, 237, 0.1);
   position: relative;
   z-index: 10;
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0) 0%, rgba(124, 58, 237, 0.4) 20%, rgba(124, 58, 237, 0.8) 50%, rgba(124, 58, 237, 0.4) 80%, rgba(124, 58, 237, 0) 100%);
+}
+.section-separator::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.15) 0%, rgba(124, 58, 237, 0) 70%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+.section-separator {
+  margin-top: -1px;
 }
 
 .section-separator-green {
   width: 100%;
-  height: 12px;
+  height: 1px;
   margin: 0;
-  background: linear-gradient(90deg, rgba(50, 255, 106, 0) 0%, rgba(50, 255, 106, 0.15) 18%, rgba(50, 255, 106, 0.35) 45%, rgba(50, 255, 106, 0.55) 50%, rgba(50, 255, 106, 0.35) 55%, rgba(50, 255, 106, 0.15) 82%, rgba(50, 255, 106, 0) 100%);
-  filter: blur(0.6px);
-  box-shadow: 0 0 14px rgba(50, 255, 106, 0.35), 0 0 36px rgba(50, 255, 106, 0.25), 0 0 64px rgba(50, 255, 106, 0.18), 0 0 96px rgba(50, 255, 106, 0.1);
   position: relative;
   z-index: 10;
+  background: linear-gradient(90deg, rgba(50, 255, 106, 0) 0%, rgba(50, 255, 106, 0.4) 20%, rgba(50, 255, 106, 0.8) 50%, rgba(50, 255, 106, 0.4) 80%, rgba(50, 255, 106, 0) 100%);
+}
+.section-separator-green::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(50, 255, 106, 0.15) 0%, rgba(50, 255, 106, 0) 70%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+.section-separator-green {
+  margin-top: -1px;
+}
+
+/* Variante para separar con sutiliza (Línea de sistema) */
+.section-separator-thin {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* =====================================================
@@ -482,208 +658,175 @@ main {
 ===================================================== */
 .services-section {
   position: relative;
-  min-height: calc(100vh - 65px);
   width: 100%;
-  background-color: #0B0B0D;
+  background-color: #0B0B0D !important;
   display: flex;
   align-items: center;
-  padding: 40px 0;
+  justify-content: center;
   box-sizing: border-box;
 }
+@media (min-width: 1025px) {
+  .services-section {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+@media (max-width: 1024px) {
+  .services-section {
+    min-height: auto;
+    padding: 100px 0 60px;
+  }
+}
 
-/* =====================================================
-   CONTENT WRAPPER
-===================================================== */
 .services-wrapper {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding-inline: 2rem;
+  padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  justify-content: center;
+  gap: 3rem;
   box-sizing: border-box;
 }
-
-/* =====================================================
-   HEADER (ALINEADO CON EL CONTENIDO)
-===================================================== */
-.services-header {
-  width: 100%;
-  max-width: 1305px;
-  margin: 0 auto;
-}
-
-.services-intro {
-  margin-top: 1rem;
-  font-family: "Roboto", sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #F2F2F2;
-  opacity: 0.85;
-  max-width: 620px;
+@media (max-width: 768px) {
+  .services-wrapper {
+    gap: 1.5rem;
+  }
 }
 
 /* =====================================================
-   SECTION TITLE
-===================================================== */
-.section-title {
-  font-family: "Anton", sans-serif;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  line-height: 1.05;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #F2F2F2;
-  margin-bottom: 0.6rem;
-  position: relative;
-}
-
-.section-title::after {
-  content: "";
-  display: block;
-  width: 56px;
-  height: 4px;
-  margin-top: 1rem;
-  background-color: #7C3AED;
-  border-radius: 4px;
-}
-
-/* =====================================================
-   CARDS GRID (LA CLAVE DEL ANCHO IGUALADO)
+   CARDS GRID - SIN ANCHOS FIJOS
 ===================================================== */
 .services-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   width: 100%;
-  max-width: 1305px;
   margin: 0 auto;
 }
 
-/* =====================================================
-   SERVICE CARD
-===================================================== */
-.service-card {
+.service-card-horizontal {
   position: relative;
-  background: rgba(0, 0, 0, 0.65);
-  border-radius: 20px;
-  padding: 2.8rem 2.6rem;
+  display: flex;
+  width: 100%;
+  background-color: #0B0B0D !important;
+  backdrop-filter: blur(35px) saturate(200%);
+  -webkit-backdrop-filter: blur(35px) saturate(200%);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  min-height: 220px;
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.service-card-horizontal:hover {
+  transform: translateY(-8px);
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 58, 237, 0.15);
+}
+.service-card-horizontal {
+  /* Info Izquierda */
+}
+.service-card-horizontal .card-left-info {
+  width: 38%;
+  padding: 3rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
-  border: 1px solid rgba(124, 58, 237, 0.35);
-  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.15), 0 22px 60px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  box-sizing: border-box;
+  justify-content: center;
 }
-
-.service-card h3 {
+.service-card-horizontal .card-left-info h3 {
   font-family: "Anton", sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  margin-bottom: 0.8rem;
   color: #F2F2F2;
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-.service-card p {
+.service-card-horizontal .card-left-info p {
   font-size: 0.95rem;
-  line-height: 1.55;
-  color: #F2F2F2;
-  opacity: 0.85;
+  line-height: 1.4;
+  opacity: 0.6;
+}
+.service-card-horizontal {
+  /* Contenido Derecha (Bullets/Mapa) */
+}
+.service-card-horizontal .card-right-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.service-card-horizontal {
+  /* RESPONSIVE LANDSCAPE / MOBILE - EL SALTO DE BIO */
+}
+@media (max-width: 900px) {
+  .service-card-horizontal {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .service-card-horizontal .card-left-info {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.2rem;
+    text-align: center;
+  }
+  .service-card-horizontal .card-right-content {
+    padding: 2.2rem;
+    min-height: 200px;
+  }
 }
 
-.service-card ul {
+/* Bullets y Mapa (Se mantienen igual para no perder el estilo) */
+.bullets-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.2rem;
 }
-
-.service-card li {
-  font-size: 0.9rem;
-  color: #F2F2F2;
-  opacity: 0.9;
-  padding-left: 18px;
+.bullets-list li {
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   position: relative;
+  padding-left: 30px;
+  color: #F2F2F2;
 }
-
-.service-card li::before {
+.bullets-list li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.6em;
-  width: 6px;
-  height: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  background: #7C3AED;
   border-radius: 50%;
-  background-color: #7C3AED;
+  box-shadow: 0 0 12px #7C3AED;
 }
 
-/* =====================================================
-   RESPONSIVE TABLET / MOBILE
-===================================================== */
-@media (max-width: 1024px) {
-  .services-wrapper {
-    padding-inline: 2rem;
-  }
-  .services-cards {
-    grid-template-columns: 1fr;
-    max-width: 680px;
-    margin: 0 auto;
-  }
-  .services-header {
-    max-width: 680px;
-    margin: 0 auto;
-  }
+.map-container {
+  width: 100%;
+  height: 100%;
+  filter: grayscale(1) invert(0.94) contrast(1.1);
+  opacity: 0.6;
+  transition: all 0.8s ease;
 }
-@media (max-width: 768px) {
-  .services-section {
-    padding: 60px 0;
-  }
-  .services-wrapper {
-    padding-inline: 1.4rem;
-  }
-  .services-cards, .services-header {
-    max-width: 100%;
-  }
-  .service-card {
-    padding: 2.2rem 2rem;
-  }
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
-/* =====================================================
-   FIX LANDSCAPE (SIMETRÍA TOTAL CON CLASSES)
-===================================================== */
-@media (max-height: 500px) and (orientation: landscape) {
-  .services-section {
-    height: auto;
-    min-height: 100vh;
-    padding: 80px 0 40px;
-    display: block;
-  }
-  .services-wrapper {
-    display: block;
-    padding-inline: 2rem;
-  }
-  .services-header {
-    margin: 0 auto 2.5rem;
-    max-width: 90%;
-  }
-  .services-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-  .service-card {
-    width: 100%;
-    padding: 1.5rem;
-  }
-  .section-title {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
+.service-card-horizontal:hover .map-container {
+  filter: grayscale(0) invert(0) contrast(1);
+  opacity: 1;
 }
+
 /* =====================================================
    CLASSES SECTION
 ===================================================== */
@@ -1294,7 +1437,7 @@ a {
 @media (max-width: 768px) {
   .footer-container {
     padding-block: 3rem;
-    padding-inline: 1.4rem; /* 👈 Cambio a mobile padding */
+    padding-inline: 1.2rem; /* 👈 Cambio a mobile padding */
     max-width: 100%;
   }
   .footer-logo {

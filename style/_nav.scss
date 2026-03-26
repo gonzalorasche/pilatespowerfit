@@ -1,12 +1,12 @@
 @use 'variables' as vars;
 
 /* =========================
-   NAVBAR
+   NAVBAR (APPLE INTERFACE)
 ========================= */
 
 .navbar {
     width: 100%;
-    height: 65px;
+    height: 65px; // Mantengo tu medida original
     position: fixed;
     top: 0;
     left: 0;
@@ -15,23 +15,24 @@
     display: flex;
     align-items: center;
 
-    background: rgba(vars.$bg-primary, 0.82);
-    backdrop-filter: blur(14px) saturate(120%);
-    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    /* Apple Glass Effect: Más transparente pero con más saturación */
+    background: rgba(vars.$bg-primary, 0.7); 
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
 
-    border-bottom: 1px solid rgba(vars.$deep-violet, 0.18);
+    /* Border Hairline: El secreto de Apple es un borde casi invisible */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 
     @media (max-width: 768px) {
-        height: 64px;
+        height: 64px; // Mantengo tu medida original
     }
 }
 
 .nav-container {
     width: 100%;
-    max-width: 1400px;
-
+    max-width: 1400px; // Mantengo tu medida original
     margin: 0 auto;
-    padding-inline: vars.$mobile-padding; // 👈 ESTE es el aire que buscabas
+    padding-inline: vars.$mobile-padding; 
 
     display: flex;
     justify-content: space-between;
@@ -46,7 +47,6 @@
     }
 }
 
-
 /* =========================
    LOGO
 ========================= */
@@ -54,20 +54,25 @@
 .logo {
     display: flex;
     align-items: center;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        opacity: 0.7;
+    }
 
     .logo-img {
-        height: 35px;
+        height: 35px; // Mantengo tu medida original
         width: auto;
         display: block;
 
         @media (max-width: 768px) {
-            height: 28px;
+            height: 28px; // Mantengo tu medida original
         }
     }
 }
 
 /* =========================
-   CTA BUTTON – LOW PROFILE
+   CTA BUTTON (ACTION CENTER STYLE)
 ========================= */
 
 .btn-cta {
@@ -75,53 +80,43 @@
     align-items: center;
     justify-content: center;
 
-    background: rgba(vars.$deep-violet, 0.18);
-
-    color: rgba(255, 255, 255, 0.9);
+    /* Estética Apple: Sólido, tipografía pesada y contraste máximo */
+    background: vars.$text-primary;
+    color: #000; // Contraste puro sobre el botón blanco
+    
     text-decoration: none;
-
-    font-weight: 600;
-    font-size: 0.7rem;
+    font-weight: 700;
+    font-size: 0.7rem; // Mantengo tu medida
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
 
-    /* Clave para el centrado perfecto */
+    /* Ajuste de padding para compensar el peso visual */
     line-height: 1;
-    padding: 7px 18px 6px;
+    padding: 10px 22px 9px; // Ligeramente más "chunkie" tipo App
 
     border-radius: 999px;
-    border: 1px solid rgba(vars.$deep-violet, 0.35);
-
+    border: none; // Eliminamos el borde violeta para ir a un look más limpio
     cursor: pointer;
 
-    box-shadow:
-        0 4px 14px rgba(vars.$deep-violet, 0.15);
+    /* Sombra suave de elevación (Depth) */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
-    transition:
-        background 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.3s ease;
+    /* Animación tipo iOS: Springy y elástica */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
-        background: rgba(vars.$deep-violet, 0.28);
-        border-color: rgba(vars.$deep-violet, 0.6);
-
-        box-shadow:
-            0 0 14px rgba(vars.$deep-violet, 0.35),
-            0 6px 22px rgba(vars.$deep-violet, 0.3);
-
-        transform: translateY(-1px);
+        background: #ffffff;
+        transform: scale(1.05) translateY(-1px);
+        box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
     }
 
     &:active {
-        transform: translateY(0);
-        box-shadow:
-            0 4px 16px rgba(vars.$deep-violet, 0.25);
+        transform: scale(0.96);
+        background: rgba(255, 255, 255, 0.9);
     }
 
     @media (max-width: 768px) {
-        padding: 6px 14px 5px;
+        padding: 8px 16px 7px;
         font-size: 0.65rem;
     }
 }

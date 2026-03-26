@@ -1,62 +1,58 @@
 @use 'variables' as vars;
 
 /* =========================
-   SECTION SEPARATOR – LIQUID GLOW
+   SECTION SEPARATOR – APPLE GLOW
 ========================= */
 
-.section-separator {
+// Mixin para no repetir código y mantener consistencia
+@mixin liquid-glow($color) {
     width: 100%;
-    height: 12px;
+    height: 1px; // Más fino = más elegante (estilo Apple)
     margin: 0;
+    position: relative;
+    z-index: 10;
 
     background: linear-gradient(
         90deg,
-        rgba(vars.$deep-violet, 0) 0%,
-        rgba(vars.$deep-violet, 0.15) 18%,
-        rgba(vars.$deep-violet, 0.35) 45%,
-        rgba(vars.$deep-violet, 0.55) 50%,
-        rgba(vars.$deep-violet, 0.35) 55%,
-        rgba(vars.$deep-violet, 0.15) 82%,
-        rgba(vars.$deep-violet, 0) 100%
+        rgba($color, 0) 0%,
+        rgba($color, 0.4) 20%,
+        rgba($color, 0.8) 50%,
+        rgba($color, 0.4) 80%,
+        rgba($color, 0) 100%
     );
 
-    filter: blur(0.6px);
-
-    box-shadow:
-        0 0 14px rgba(vars.$deep-violet, 0.35),
-        0 0 36px rgba(vars.$deep-violet, 0.25),
-        0 0 64px rgba(vars.$deep-violet, 0.18),
-        0 0 96px rgba(vars.$deep-violet, 0.1);
-
-    position: relative;
-    z-index: 10;
+    // El resplandor (Glow)
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 20px;
+        background: radial-gradient(
+            ellipse at center,
+            rgba($color, 0.15) 0%,
+            rgba($color, 0) 70%
+        );
+        filter: blur(10px);
+        pointer-events: none;
+    }
 }
 
+.section-separator {
+    @include liquid-glow(vars.$deep-violet);
+    margin-top: -1px; // Para que no queden gaps entre secciones
+}
 
 .section-separator-green {
+    @include liquid-glow(vars.$neon-green);
+    margin-top: -1px;
+}
+
+/* Variante para separar con sutiliza (Línea de sistema) */
+.section-separator-thin {
     width: 100%;
-    height: 12px;
-    margin: 0;
-
-    background: linear-gradient(
-        90deg,
-        rgba(vars.$neon-green, 0) 0%,
-        rgba(vars.$neon-green, 0.15) 18%,
-        rgba(vars.$neon-green, 0.35) 45%,
-        rgba(vars.$neon-green, 0.55) 50%,
-        rgba(vars.$neon-green, 0.35) 55%,
-        rgba(vars.$neon-green, 0.15) 82%,
-        rgba(vars.$neon-green, 0) 100%
-    );
-
-    filter: blur(0.6px);
-
-    box-shadow:
-        0 0 14px rgba(vars.$neon-green, 0.35),
-        0 0 36px rgba(vars.$neon-green, 0.25),
-        0 0 64px rgba(vars.$neon-green, 0.18),
-        0 0 96px rgba(vars.$neon-green, 0.1);
-
-    position: relative;
-    z-index: 10;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
 }

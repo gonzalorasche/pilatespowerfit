@@ -159,3 +159,22 @@
         max-width: 90%; // 👈 AJUSTÁ ACÁ: 85% / 90% / 92%
     }
 }
+
+
+/* 3. EL AJUSTE PARA LANDSCAPE (Horizontal) */
+@media (max-height: 500px) and (orientation: landscape) {
+    .services-section {
+        height: auto; // Evitá el 100vh en horizontal porque se pisa todo
+        padding: 80px 0;
+    }
+    
+    .services-wrapper {
+        // Forzamos que el ancho no se escape
+        max-width: 90%; 
+        padding-inline: vars.$mobile-padding;
+    }
+    
+    .services-cards {
+        max-width: 100%; // Que no intente ser más ancho que su padre
+    }
+}
