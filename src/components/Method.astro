@@ -1,0 +1,155 @@
+---
+import { pillars } from '../data/site.js';
+---
+
+<section class="section method" id="metodo">
+  <div class="glow method__glow" aria-hidden="true"></div>
+
+  <div class="shell">
+    <div class="method__head">
+      <div>
+        <p class="eyebrow" data-reveal>Metodología</p>
+        <h2 class="h-xl method__title" data-reveal style="--d:80ms">
+          Para cuerpos<br />que quieren <span class="grad-text">más</span>
+        </h2>
+      </div>
+      <div class="method__intro" data-reveal="right" style="--d:160ms">
+        <p class="lede">
+          <strong>Pilates Power Fit</strong> es para quienes sienten que entrenan pero no
+          terminan de conectar. No es pilates tradicional: es una secuencia exigente de
+          fuerza y cardio que desafía cada fibra.
+        </p>
+        <p class="method__quote">
+          «El cruce perfecto entre la estética de la danza y la potencia del entrenamiento
+          funcional.»
+        </p>
+      </div>
+    </div>
+
+    <ul class="method__grid">
+      {pillars.map((p, i) => (
+        <li class="pillar" data-reveal style={`--d:${i * 90}ms`}>
+          <span class="pillar__n">{p.n}</span>
+          <h3 class="h-md pillar__title">{p.title}</h3>
+          <p class="pillar__text">{p.text}</p>
+          <span class="pillar__line" aria-hidden="true"></span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .method{ background:var(--ink); overflow:hidden; }
+
+  .method__glow{
+    width:min(52vw,620px);
+    aspect-ratio:1;
+    background:rgba(139,61,255,.20);
+    top:-14%; right:-12%;
+    animation:drift 16s ease-in-out infinite;
+  }
+
+  .method__head{
+    position:relative;
+    display:grid;
+    gap:clamp(1.6rem,4vw,3.5rem);
+    padding-bottom:clamp(2.6rem,6vw,4.5rem);
+  }
+
+  .method__title{ margin-top:1rem; }
+
+  .method__intro{ display:grid; gap:1.3rem; align-content:end; }
+  .method__intro strong{ color:var(--paper); font-weight:700; }
+
+  .method__quote{
+    font-family:var(--font-body);
+    font-weight:500;
+    font-size:clamp(1rem,.9rem + .45vw,1.16rem);
+    line-height:1.5;
+    color:var(--paper);
+    padding-left:1.1rem;
+    border-left:2px solid var(--violet);
+  }
+
+  /* Las lineas separadoras se dibujaban con el fondo del grid asomando
+     por un gap de 1px. Como las cards entran con opacity:0, ese fondo
+     quedaba a la vista como una caja gris hasta terminar la animacion.
+     Ahora cada card trae su propia linea y aparecen juntas. */
+  .method__grid{
+    display:grid;
+    border-block:1px solid var(--line-soft);
+  }
+
+  /* Solo en 1 columna. No se resetea despues: Astro le agrega su atributo
+     de scope a cada parte del selector, asi que .pillar + .pillar termina
+     con mas especificidad que los :nth-child de los breakpoints. */
+  @media (max-width:639px){
+    .pillar + .pillar{ border-top:1px solid var(--line-soft); }
+  }
+
+  .pillar{
+    position:relative;
+    background:var(--ink);
+    padding:clamp(1.5rem,3.2vw,2.4rem) clamp(1.1rem,2.4vw,1.9rem);
+    display:grid;
+    grid-template-rows:auto auto 1fr;   /* numero · titulo · texto */
+    gap:.72rem;
+    transition:background .45s var(--ease-out);
+  }
+  .pillar:hover,
+  .pillar.is-hover{ background:var(--ink-2); }
+
+  .pillar__n{
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:.78rem;
+    letter-spacing:.14em;
+    color:var(--violet-soft);
+  }
+
+  .pillar__title{
+    letter-spacing:-.02em;
+    min-height:1.8em;      /* reserva 2 renglones */
+    display:flex;
+    align-items:flex-start;
+  }
+
+  .pillar__text{
+    font-size:.93rem;
+    color:var(--paper-dim);
+    line-height:1.58;
+  }
+
+  .pillar__line{
+    position:absolute;
+    left:0; top:0;
+    width:100%; height:2px;
+    background:var(--grad-power);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .6s var(--ease-out);
+  }
+  .pillar:hover .pillar__line,
+  .pillar.is-hover .pillar__line{ transform:scaleX(1); }
+
+  @media (min-width:640px){
+    .method__grid{ grid-template-columns:repeat(2,1fr); }
+    .pillar:nth-child(odd){ border-right:1px solid var(--line-soft); }
+    .pillar:nth-child(n+3){ border-top:1px solid var(--line-soft); }
+  }
+
+  @media (min-width:1000px){
+    .method__head{ grid-template-columns:1.05fr 1fr; align-items:end; }
+    .method__grid{ grid-template-columns:repeat(4,1fr); }
+    .pillar:nth-child(n+3){ border-top:0; }
+    .pillar:not(:last-child){ border-right:1px solid var(--line-soft); }
+  }
+
+  @media (max-height:560px) and (orientation:landscape) and (max-width:900px){
+    .method__grid{ grid-template-columns:repeat(2,1fr); }
+    .pillar:nth-child(n+3){ border-top:1px solid var(--line-soft); }
+    .pillar:nth-child(odd){ border-right:1px solid var(--line-soft); }
+    .pillar:nth-child(even){ border-right:0; }
+  }
+</style>

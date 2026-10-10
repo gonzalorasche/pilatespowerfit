@@ -1,0 +1,340 @@
+/* ============================================================
+   PILATES POWER FIT — Design System v2
+   ============================================================ */
+
+:root{
+  /* --- Superficies --- */
+  --ink:          #07070A;
+  --ink-2:        #0D0D12;
+  --ink-3:        #14141C;
+  --line:         rgba(255,255,255,.10);
+  --line-soft:    rgba(255,255,255,.06);
+
+  /* --- Tinta --- */
+  --paper:        #F5F5F7;
+  --paper-dim:    rgba(245,245,247,.62);
+  --paper-faint:  rgba(245,245,247,.38);
+
+  /* --- Acentos --- */
+  --violet:       #8B3DFF;
+  --violet-soft:  #B98CFF;
+  --violet-deep:  #4C1D95;
+  --lime:         #D8FF3E;
+  --pink:         #FF3D8A;
+
+  /* --- Gradientes --- */
+  --grad-power:   linear-gradient(100deg, var(--violet) 0%, #C13BFF 50%, var(--pink) 100%);
+  --grad-night:   linear-gradient(135deg, #FF3D8A 0%, #8B3DFF 55%, #3B1E7A 100%);
+
+  /* --- Tipografia --- */
+  --font-display: 'Big Shoulders Display', 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* --- Ritmo --- */
+  --gutter:       clamp(1.15rem, 4vw, 3.5rem);
+  --maxw:         1320px;
+  --section-y:    clamp(4.5rem, 11vh, 9rem);
+  --r-lg:         26px;
+  --r-md:         18px;
+  --r-sm:         11px;
+
+  /* --- Motion --- */
+  --ease-out:     cubic-bezier(.16,1,.3,1);
+  --ease-power:   cubic-bezier(.65,.02,.2,1);
+
+  --nav-h:        72px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+  scroll-padding-top: calc(var(--nav-h) + 12px);
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--font-body);
+  font-size:clamp(.98rem,.92rem + .25vw,1.06rem);
+  line-height:1.62;
+  font-weight:400;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* clip en vez de hidden: no crea contenedor de scroll, asi no rompe
+   position:sticky ni el scroll suave. hidden queda de fallback. */
+@supports (overflow:clip){
+  html,body{ overflow-x:clip; }
+}
+
+body.is-locked{ overflow:hidden; }
+
+img,video,svg,iframe{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+ul{ margin:0; padding:0; list-style:none; }
+
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  font-weight:800;
+  line-height:.9;
+  letter-spacing:.002em;
+  margin:0;
+  text-wrap:balance;
+}
+
+p{ margin:0; text-wrap:pretty; }
+
+::selection{ background:var(--violet); color:#fff; }
+
+:focus-visible{
+  outline:2px solid var(--lime);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+
+.shell{
+  width:100%;
+  max-width:var(--maxw);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+}
+
+.section{
+  position:relative;
+  padding-block:var(--section-y);
+}
+
+.rule{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--line),transparent);
+  border:0;
+  margin:0;
+}
+
+/* ============================================================
+   TIPOGRAFIA UTIL
+   ============================================================ */
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.6em;
+  font-size:.66rem;
+  font-weight:600;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--paper-dim);
+}
+.eyebrow::before{
+  content:'';
+  width:22px; height:1px;
+  background:var(--violet-soft);
+  flex:none;
+}
+
+.h-mega{
+  font-size:clamp(4rem, 1rem + 15vw, 12rem);
+  line-height:.82;
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+
+.h-xl{
+  font-size:clamp(3rem, 1rem + 10vw, 7rem);
+  text-transform:uppercase;
+  letter-spacing:.004em;
+}
+
+.h-lg{ font-size:clamp(1.85rem,1.2rem + 2.4vw,3.1rem); }
+.h-md{ font-size:clamp(1.4rem,1.1rem + 1.2vw,1.95rem); }
+
+.lede{
+  font-size:clamp(1rem,.94rem + .45vw,1.22rem);
+  color:var(--paper-dim);
+  line-height:1.6;
+  max-width:56ch;
+}
+
+.grad-text{
+  background:var(--grad-power);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.outline-text{
+  color:transparent;
+  -webkit-text-stroke:1.6px rgba(245,245,247,.45);
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+
+.btn{
+  --btn-bg:var(--paper);
+  --btn-fg:var(--ink);
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.7em;
+  padding:.92em 1.7em;
+  border-radius:100px;
+  background:var(--btn-bg);
+  color:var(--btn-fg);
+  font-weight:700;
+  font-size:.83rem;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  overflow:hidden;
+  isolation:isolate;
+  transition:transform .4s var(--ease-out), box-shadow .4s var(--ease-out), color .3s;
+}
+.btn::after{
+  content:'';
+  position:absolute; inset:0;
+  background:var(--grad-power);
+  transform:translateY(101%);
+  transition:transform .48s var(--ease-power);
+  z-index:-1;
+}
+/* En mobile no hay puntero. .is-hover la pone el script de Base.astro
+   siguiendo el dedo; :active cubre el toque sin desplazamiento. */
+.btn:hover,
+.btn:active,
+.btn:focus-visible,
+.btn.is-hover{ transform:translateY(-3px); box-shadow:0 14px 34px rgba(139,61,255,.34); color:#fff; }
+.btn:hover::after,
+.btn:active::after,
+.btn:focus-visible::after,
+.btn.is-hover::after{ transform:translateY(0); }
+
+.btn--ghost{
+  --btn-bg:transparent;
+  --btn-fg:var(--paper);
+  border:1px solid var(--line);
+  backdrop-filter:blur(10px);
+}
+.btn--lime{ --btn-bg:var(--lime); --btn-fg:var(--ink); }
+.btn--lime:hover,
+.btn--lime:active,
+.btn--lime:focus-visible,
+.btn--lime.is-hover{ box-shadow:0 14px 34px rgba(216,255,62,.26); }
+
+.btn--sm{ padding:.72em 1.25em; font-size:.72rem; }
+
+.btn__arrow{ transition:transform .4s var(--ease-out); }
+.btn:hover .btn__arrow,
+.btn:active .btn__arrow,
+.btn:focus-visible .btn__arrow,
+.btn.is-hover .btn__arrow{ transform:translateX(4px); }
+
+/* El dedo toca poco tiempo: el barrido tiene que entrar rapido para verse. */
+@media (hover:none){
+  .btn{ transition-duration:.18s; }
+  .btn::after{ transition-duration:.18s; }
+  .btn__arrow{ transition-duration:.18s; }
+}
+
+/* ============================================================
+   REVEAL / MOTION
+   ============================================================ */
+
+[data-reveal]{
+  opacity:0;
+  transform:translate3d(0,26px,0);
+  transition:opacity .85s var(--ease-out), transform .95s var(--ease-out);
+  transition-delay:var(--d,0ms);
+  will-change:opacity,transform;
+}
+[data-reveal="left"]{ transform:translate3d(-30px,0,0); }
+[data-reveal="right"]{ transform:translate3d(30px,0,0); }
+[data-reveal="zoom"]{ transform:scale(.94); }
+
+/* En mobile el contenedor ocupa casi todo el ancho: un reveal horizontal
+   deja el elemento 30px fuera de pantalla hasta que entra, y eso genera
+   scroll horizontal (Safari iOS ignora el overflow-x del body). Ahi la
+   entrada se hace vertical, que no se sale nunca. */
+@media (max-width:767px){
+  [data-reveal="left"],
+  [data-reveal="right"]{ transform:translate3d(0,26px,0); }
+}
+/* El clip va en el hijo: Chrome reporta intersectionRatio 0 en un
+   elemento con clip-path cerrado y el IntersectionObserver nunca dispara. */
+[data-reveal="clip"]{
+  opacity:1;
+  transform:none;
+  overflow:hidden;
+}
+[data-reveal="clip"] > *{
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path 1.05s var(--ease-power);
+  transition-delay:var(--d,0ms);
+}
+
+.is-in[data-reveal]{
+  opacity:1;
+  transform:translate3d(0,0,0) scale(1);
+}
+.is-in[data-reveal="clip"] > *{ clip-path:inset(0 0 0 0); }
+
+@keyframes pulse-ring{
+  0%{ box-shadow:0 0 0 0 rgba(216,255,62,.5); }
+  70%{ box-shadow:0 0 0 12px rgba(216,255,62,0); }
+  100%{ box-shadow:0 0 0 0 rgba(216,255,62,0); }
+}
+
+@keyframes drift{
+  0%,100%{ transform:translate3d(0,0,0) scale(1); }
+  50%{ transform:translate3d(2%,-3%,0) scale(1.06); }
+}
+
+@keyframes slow-zoom{
+  from{ transform:scale(1.03); }
+  to{ transform:scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+  [data-reveal],[data-reveal] > *{ opacity:1 !important; transform:none !important; clip-path:none !important; }
+}
+
+/* ============================================================
+   GRANO + GLOW AMBIENTAL
+   ============================================================ */
+
+.grain{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9;
+  opacity:.05;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glow{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+  pointer-events:none;
+  z-index:0;
+}

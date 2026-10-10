@@ -1,0 +1,157 @@
+---
+const credentials = [
+  { k: 'Formación', v: 'Bailarina profesional (UNT)' },
+  { k: 'Certificación', v: 'Pilates Mat & Reformer' },
+  { k: 'Especialidad', v: 'Biomecánica aplicada' },
+  { k: 'Rol', v: 'Founder & Chief Instructor' },
+];
+---
+
+<section class="section founder" id="profe">
+  <div class="shell founder__inner">
+    <figure class="founder__media" data-reveal="clip">
+      <div class="founder__frame">
+        <img
+          src="/media/rosario.webp"
+          alt="Rosario Santi, creadora del método Pilates Power Fit"
+          width="1200"
+          height="1477"
+          loading="lazy"
+          data-parallax="0.06"
+        />
+        <span class="founder__badge">
+          <span class="founder__badge-dot"></span>
+          Método PPF
+        </span>
+      </div>
+    </figure>
+
+    <div class="founder__copy">
+      <p class="eyebrow" data-reveal>Quién está detrás</p>
+      <h2 class="h-xl founder__name" data-reveal style="--d:70ms">Rosario<br />Santi</h2>
+
+      <p class="lede" data-reveal style="--d:140ms">
+        Creó Power Fit cruzando dos mundos: la precisión del movimiento que trae de la danza
+        y la exigencia del entrenamiento funcional. El resultado es una clase donde nada
+        está puesto al azar.
+      </p>
+
+      <dl class="founder__creds" data-reveal style="--d:200ms">
+        {credentials.map((c) => (
+          <div class="cred">
+            <dt>{c.k}</dt>
+            <dd>{c.v}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .founder{
+    background:
+      linear-gradient(180deg,var(--ink) 0%, var(--ink-2) 40%, var(--ink) 100%);
+  }
+
+  .founder__inner{
+    display:grid;
+    gap:clamp(2rem,5vw,4.5rem);
+    align-items:center;
+  }
+
+  .founder__media{ margin:0; }
+
+  .founder__frame{
+    position:relative;
+    border-radius:var(--r-lg);
+    overflow:hidden;
+    background:var(--ink-3);
+    aspect-ratio:4/5;
+  }
+  .founder__frame::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg,transparent 45%,rgba(7,7,10,.72) 100%);
+    pointer-events:none;
+  }
+  .founder__frame img{
+    width:100%; height:112%;
+    object-fit:cover;
+    object-position:center 18%;
+    filter:grayscale(1) contrast(1.08);
+    transform:translate3d(0,var(--py,0px),0);
+    transition:filter .6s var(--ease-out);
+  }
+  .founder__frame:hover img,
+  .founder__frame.is-hover img{ filter:grayscale(.35) contrast(1.05); }
+
+  .founder__badge{
+    position:absolute;
+    left:clamp(.8rem,2vw,1.2rem);
+    bottom:clamp(.8rem,2vw,1.2rem);
+    z-index:1;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    padding:.5rem .9rem;
+    border-radius:100px;
+    border:1px solid var(--line);
+    background:rgba(7,7,10,.6);
+    backdrop-filter:blur(14px);
+    font-size:.66rem;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+  }
+  .founder__badge-dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--lime);
+    animation:pulse-ring 2.4s ease-out infinite;
+  }
+
+  .founder__copy{ display:grid; gap:1.2rem; align-content:center; }
+  .founder__name{ margin-block:.4rem .2rem; }
+
+  .founder__creds{
+    display:grid;
+    gap:0;
+    margin:.6rem 0 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .cred{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:.6rem;
+    padding-block:.85rem;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .cred dt{
+    font-size:.68rem;
+    font-weight:600;
+    letter-spacing:.17em;
+    text-transform:uppercase;
+    color:var(--paper-faint);
+  }
+  .cred dd{
+    margin:0;
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(1.2rem,1rem + .6vw,1.42rem);
+    letter-spacing:.015em;
+    text-align:right;
+  }
+
+  @media (min-width:900px){
+    .founder__inner{ grid-template-columns:.92fr 1fr; }
+    .founder__frame{ aspect-ratio:3/4; }
+  }
+
+  @media (max-height:560px) and (orientation:landscape) and (max-width:1000px){
+    .founder__inner{ grid-template-columns:.8fr 1fr; gap:1.6rem; }
+    .founder__frame{ aspect-ratio:3/4; }
+  }
+</style>
